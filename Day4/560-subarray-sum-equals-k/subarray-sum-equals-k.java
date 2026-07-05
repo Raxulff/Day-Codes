@@ -1,16 +1,20 @@
 class Solution {
     public int subarraySum(int[] nums, int k) {
-        int subArrayCount = 0;
-        for(int ind1 = 0;ind1 < nums.length;ind1++){
-            int sum = 0;
-            for(int ind2 = ind1;ind2 < nums.length;ind2++){
-                sum = sum + nums[ind2];
-                if(sum == k){
-                    subArrayCount++;
-                }
-                
+        int n = nums.length;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        map.put(0,1);
+        //      | |
+        //      k,v  [k->key,val];
+        int sum = 0;
+        int count = 0;
+        for(int val : nums){
+            sum+=val;
+            int key = sum - k;
+            if(map.containsKey(key)){
+                count+=map.get(key);
             }
+            map.put(sum,map.getOrDefault(sum,0)+1);
         }
-        return subArrayCount++;
+        return count;
     }
 }
