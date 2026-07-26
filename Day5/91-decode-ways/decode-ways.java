@@ -3,29 +3,29 @@ class Solution {
     public int numDecodings(String s) {
 
         int n = s.length();
-
         if (s.charAt(0) == '0')
-            return 0;
-
-        int[] dp = new int[n + 1];
-
-        dp[0] = 1;   // Empty string
-        dp[1] = 1;   // First character is already checked
-
+    return 0;
+        int prev2 = 1;   // Empty string
+        int prev1 = 1; 
+        int curr = 0;
+          // First character is already checked
         for (int i = 2; i <= n; i++) {
-
+            curr = 0;
             // One digit
             if (s.charAt(i - 1) != '0')
-                dp[i] = dp[i - 1];
+                curr = curr +  prev1;
 
             // Two digits
             int num = (s.charAt(i - 2) - '0') * 10
                     + (s.charAt(i - 1) - '0');
 
             if (num >= 10 && num <= 26)
-                dp[i] += dp[i - 2];
-        }
+                curr+= prev2;
 
-        return dp[n];
+            prev2 = prev1;
+            prev1 = curr;
+            
+        }
+        return prev1;
     }
 }
