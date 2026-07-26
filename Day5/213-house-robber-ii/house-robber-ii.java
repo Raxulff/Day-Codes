@@ -3,41 +3,27 @@ class Solution {
         int n = nums.length;
         if (n == 1)
             return nums[0];
-        int[] dp1 = new int[n];
-        int[] dp2 = new int[n];
+        
+        Integer[] dp1 = new Integer[n];
+        Integer[] dp2 = new Integer[n];
 
-        int[] arr1 = new int[n - 1];
-        int[] arr2 = new int[n - 1];
-
-        for (int ind = 1; ind < n; ind++) {
-            arr1[ind - 1] = nums[ind];
-        }
-        for (int ind = 0; ind < n - 1; ind++) {
-            arr2[ind] = nums[ind];
-        }
-
-        Arrays.fill(dp1, -1);
-        Arrays.fill(dp2, -1);
-
-        return Math.max(function1(dp1, 0, arr1), function1(dp2, 0, arr2));
+        return Math.max(function1(0,n-1,nums,dp1), function1(1, n,nums,dp2));
 
     }
 
-    public static int function1(int[] dp, int ind, int[] nums) {
+    public static int function1(int ind,int end,int[] nums,
+     Integer[] dp) {
         // 1-> base case
-        if (ind >= nums.length)
+        if (ind >= end)
             return 0;
 
-        //2-> check already exist
-        if (dp[ind] != -1)
+        if(dp[ind] != null)
             return dp[ind];
-
-        //3-> logic
-        int pick = nums[ind] + function1(dp, ind + 2, nums);
-        int notPick = 0 + function1(dp, ind + 1, nums);
+        int pick = nums[ind] + function1(ind + 2,end,nums,dp);
+        int notPick = 0 + function1(ind + 1,end,nums,dp);
 
         //4-> update the dp
-        dp[ind] = Math.max(pick, notPick);
-        return dp[ind];
+        return dp[ind] = Math.max(pick, notPick);
+        
     }
 }
