@@ -8,12 +8,12 @@ class Solution {
         if(ind >= s.length()) return 1;
         if(s.charAt(ind) == '0') return 0;
         if(dp[ind] != -1) return dp[ind];
-        int way = function(s,dp,ind+1);
-
+        int way1 = function(s,dp,ind+1);
+        int way2 = 0;
         if(ind+1 < s.length() && Integer.parseInt(s.substring(ind,ind+2)) <= 26){
-            way = way + function(s,dp,ind+2);
+            way2 = function(s,dp,ind+2);
         }
-        dp[ind] = way;
+        dp[ind] = way1+way2;
         return dp[ind];
     }
 }
