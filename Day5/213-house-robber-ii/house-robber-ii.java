@@ -4,26 +4,26 @@ class Solution {
         if (n == 1)
             return nums[0];
         
-        Integer[] dp1 = new Integer[n];
-        Integer[] dp2 = new Integer[n];
+        int prev2 = nums[0];
+        int prev1 = Math.max(nums[0],nums[1]);
+        int curr = 0;
+        int max = Integer.MIN_VALUE;
+        for(int ind = 2;ind < n-1;ind++){
+            curr = Math.max(prev1,nums[ind]+prev2);
+            prev2 = prev1;
+            prev1 = curr;
+        }
+        max = Math.max(max,prev1);
 
-        return Math.max(function1(0,n-1,nums,dp1), function1(1, n,nums,dp2));
-
-    }
-
-    public static int function1(int ind,int end,int[] nums,
-     Integer[] dp) {
-        // 1-> base case
-        if (ind >= end)
-            return 0;
-
-        if(dp[ind] != null)
-            return dp[ind];
-        int pick = nums[ind] + function1(ind + 2,end,nums,dp);
-        int notPick = 0 + function1(ind + 1,end,nums,dp);
-
-        //4-> update the dp
-        return dp[ind] = Math.max(pick, notPick);
-        
+        if(n >= 3){
+            prev2 = nums[1];
+            prev1 = Math.max(nums[1],nums[2]);
+            for(int ind = 3;ind < n;ind++){
+                curr = Math.max(prev1,nums[ind]+prev2);
+                prev2 = prev1;
+                prev1 = curr;
+            }
+        }
+        return max = Math.max(max,prev1);
     }
 }
