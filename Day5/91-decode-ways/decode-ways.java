@@ -1,19 +1,31 @@
 class Solution {
+
     public int numDecodings(String s) {
-        int[] dp = new int[s.length()+1];
-        Arrays.fill(dp,-1);
-        return function(s,dp,0);
-    }
-    public static int function(String s,int[] dp,int ind){
-        if(ind >= s.length()) return 1;
-        if(s.charAt(ind) == '0') return 0;
-        if(dp[ind] != -1) return dp[ind];
-        int way1 = function(s,dp,ind+1);
-        int way2 = 0;
-        if(ind+1 < s.length() && Integer.parseInt(s.substring(ind,ind+2)) <= 26){
-            way2 = function(s,dp,ind+2);
+
+        int n = s.length();
+
+        if (s.charAt(0) == '0')
+            return 0;
+
+        int[] dp = new int[n + 1];
+
+        dp[0] = 1;   // Empty string
+        dp[1] = 1;   // First character is already checked
+
+        for (int i = 2; i <= n; i++) {
+
+            // One digit
+            if (s.charAt(i - 1) != '0')
+                dp[i] = dp[i - 1];
+
+            // Two digits
+            int num = (s.charAt(i - 2) - '0') * 10
+                    + (s.charAt(i - 1) - '0');
+
+            if (num >= 10 && num <= 26)
+                dp[i] += dp[i - 2];
         }
-        dp[ind] = way1+way2;
-        return dp[ind];
+
+        return dp[n];
     }
 }
