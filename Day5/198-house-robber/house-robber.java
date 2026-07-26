@@ -3,12 +3,15 @@ class Solution {
         int n = nums.length;
         if(n<=1) return nums[0];
         Integer[] dp = new Integer[n];
-        dp[0] = nums[0];
-        dp[1] = Math.max(nums[0],nums[1]);
+        int prev2 = nums[0];
+        int prev1 = Math.max(nums[0],nums[1]);
+        int curr = 0;
         for(int ind = 2;ind < n;ind++){
-            dp[ind] = Math.max(dp[ind-1],nums[ind]+dp[ind-2]);
+            curr = Math.max(prev1,nums[ind]+prev2);
+            prev2 = prev1;
+            prev1 = curr;
         }
-        System.out.print(Arrays.toString(dp));
-        return dp[n-1];
+        //System.out.print(Arrays.toString(dp));
+        return prev1;
     }
 }
