@@ -13,7 +13,7 @@ class Solution {
             curr = 0;
             // One digit
             if (s.charAt(i - 1) != '0')
-                curr = curr +  prev1;
+                curr = prev1;
 
             // Two digits
             int num = (s.charAt(i - 2) - '0') * 10
