@@ -1,19 +1,20 @@
 class Solution {
     public int minimumTotal(List<List<Integer>> triangle) {
         Integer[][] dp = new Integer[triangle.size()][triangle.size()];
-        return solve(triangle,0,0,dp);
-    }
-    public static int solve(List<List<Integer>> tri,int row,int col,Integer[][] dp){
+        int R = triangle.size();
+        int C = triangle.size();
 
-        if(row == tri.size())
-            return 0;
+        for(int col = 0;col < triangle.size();col++){
+            dp[R-1][col] = triangle.get(R-1).get(col);
+        }
 
-        if(dp[row][col] != null)
-            return dp[row][col];
-
-        int down = solve(tri,row+1,col,dp);
-        int downRight = solve(tri,row+1,col+1,dp);
-        return dp[row][col] = tri.get(row).get(col) + Math.min(down,downRight);
-        
+        for(int row = R-2;row >=0;row--){
+            for(int col = 0;col <= row;col++){
+                int down = dp[row+1][col];
+                int downRight = dp[row+1][col+1];
+                dp[row][col] = triangle.get(row).get(col) + Math.min(down,downRight); 
+            }
+        }
+        return dp[0][0];
     }
 }
