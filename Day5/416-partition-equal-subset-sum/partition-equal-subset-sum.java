@@ -7,23 +7,21 @@ class Solution {
             return false;
         int target = sum/2;
         int n = nums.length;
-        boolean[][] dp = new boolean[n][target+1];
+        Boolean[][] dp = new Boolean[n][target+1];
 
-        for(int ind = 0;ind < n;ind++)
-            dp[ind][0] = true;
-
-        if(nums[0] < target)
-            dp[0][nums[0]] = true;
-        for(int ind  = 1;ind < n;ind++){
-            for(int indTarget = 1;indTarget <= target;indTarget++){
-                boolean notTake = dp[ind-1][indTarget];
-                boolean take = false;
-                if(nums[ind] <= indTarget)
-                    take = dp[ind-1][indTarget-nums[ind]];
-                dp[ind][indTarget] = notTake || take;
-
-            }
-        }
-        return dp[n-1][target];
+        return solve(nums,target,n-1,dp);
+    }
+    public static boolean solve(int[] nums,int target,int ind,Boolean[][] dp){
+        if(target == 0)
+            return true;
+        if(ind == 0)
+            return nums[ind] == target;
+        if(dp[ind][target] != null)
+            return dp[ind][target];
+        boolean notTake = solve(nums,target,ind-1,dp);
+        boolean take = false;
+        if(nums[ind] <= target)
+            take = solve(nums,target-nums[ind],ind-1,dp);
+        return dp[ind][target] = notTake || take; 
     }
 }
