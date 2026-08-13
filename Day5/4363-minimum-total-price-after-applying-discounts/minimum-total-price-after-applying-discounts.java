@@ -9,7 +9,6 @@ class Solution {
         double ans = 0;
         while(price_Index >= 0 && discount_Index >=0){
             ans += (double)prices[price_Index]*(double) (100-discounts[discount_Index])/100.0;
-            System.out.print(ans+"\n");
             price_Index--;
             discount_Index--;
         }
