@@ -4,7 +4,7 @@ class Solution {
         for(int ind = 1;ind < arr.length;ind++){
             sum = sum + Math.abs(arr[ind]-arr[ind-1]);
         }
-        System.out.print(sum);
+        //System.out.print(sum);
         return sum;
     }
 }
