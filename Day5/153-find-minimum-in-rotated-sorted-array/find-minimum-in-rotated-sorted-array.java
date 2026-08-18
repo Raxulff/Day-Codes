@@ -4,12 +4,19 @@ class Solution {
         int low = 0;
         int min = Integer.MAX_VALUE;
         while(low <= high){
+            int mid = low + (high -low)/2;
             if(nums[low] <= nums[high]){
                 min = Math.min(min,nums[low]);
-                return min;
+                //return min;
             }
-            low++;
+            if(nums[low] <= nums[mid]){
+                min = Math.min(min,nums[low]);
+                low = mid+1;
+            }else{
+                high = mid;
+            }
+            
         }
-        return 0;
+        return min;
     }
 }
