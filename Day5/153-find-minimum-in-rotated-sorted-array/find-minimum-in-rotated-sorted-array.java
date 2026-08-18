@@ -13,7 +13,8 @@ class Solution {
                 min = Math.min(min,nums[low]);
                 low = mid+1;
             }else{
-                high = mid;
+                min = Math.min(min,nums[mid]);
+                high = mid-1;
             }
             
         }
