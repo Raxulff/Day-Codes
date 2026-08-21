@@ -15,11 +15,11 @@ class Solution {
         for(;low <= high;low++){
             int miss = arr[low] -low - 1;
             if(miss >=k){
-                ans = low;
+                //ans = low;
                 break;
             }   
         }
-        return ans + k ;
+        return low + k ;
         //ans = arr[high] + k - (missing);
         //ans = arr[high] + k - (arr[high] - high - 1);
         //ans = arr[high] + k - arr[high] + high + 1;
