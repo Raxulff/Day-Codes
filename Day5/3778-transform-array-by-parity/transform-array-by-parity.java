@@ -9,7 +9,7 @@ class Solution {
                 odd++;
             }
         }
-        System.out.print(even+" "+odd);
+        //System.out.print(even+" "+odd);
         int[] res = new int[even + odd];
         for(int ind = 0;ind < even;ind++){
             res[ind] = 0;
