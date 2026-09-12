@@ -24,7 +24,6 @@ class Solution {
         }
         k = k%n;
         while(trav1.next != null && k1 != k){
-            System.out.println(trav1.val+" "+n);
             trav1 = trav1.next;
             k1++;
         }
