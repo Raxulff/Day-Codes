@@ -22,7 +22,7 @@ class Solution {
             int n = 1;
             ListNode trav = curr;
 
-            while(trav != null && trav.next != null && n != k){
+            while(trav.next != null && n != k){
                 n++;
                 trav = trav.next;
             }
