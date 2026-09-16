@@ -27,7 +27,7 @@ class Solution {
             trav1 = trav1.next;
             k1++;
         }
-        n = 0;
+        //n = 0;
         ListNode tail1 = trav1;
         ListNode head2 = tail1.next;
         tail1.next = null;
