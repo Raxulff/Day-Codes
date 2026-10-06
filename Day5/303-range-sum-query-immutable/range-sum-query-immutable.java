@@ -7,10 +7,6 @@ class NumArray {
         for(int ind = 1;ind < nums.length;ind++){
             prefix[ind+1] = prefix[ind] + nums[ind];
         }
-
-        for(int val : prefix){
-            System.out.print(val+" ");
-        }
     }
     
     public int sumRange(int left, int right) {
